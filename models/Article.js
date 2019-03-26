@@ -10,6 +10,7 @@ var ArticleSchema = new Schema({
   // `title` is required and type string
   title: {
     type: String,
+    unique: true,
     required: "title is missing !"
   },
   // 'summary is required and type string
