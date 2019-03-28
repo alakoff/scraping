@@ -104,21 +104,23 @@ module.exports = function(app) {
     var articleId = req.params.id;
     db.Article.findOne({ _id: articleId })
       .then(function(dbArticle) {
-        console.log(dbArticle);
+        console.log('line 107',dbArticle);
 
         //Delete the note
         db.Note.deleteOne({ _id: dbArticle.note }, function(err) {
           if (err) {
-            res.json(err);
-          }
+            console.log(err);   
+          }    
         });
-      })
-      .then(function(dbArticle){
+      
         //Update current Article to remove note ref value
-        db.Article.findOneAndUpdate({ _id: articleId },{ $pull: { note:dbArticle.note }},{new:true})
-      })
-      .catch(function(err){
-        res.json(err);
+        console.log('line 118 dbArticle.note: ', dbArticle.note)
+        db.Article.findByIdAndUpdate(articleId,{$unset: {note:dbArticle.note}},(function(err){
+          if (err){
+            console.log(err);
+          }
+        }))
+        
       });
     
     res.json(articleId);
