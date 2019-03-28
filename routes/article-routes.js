@@ -99,13 +99,28 @@ module.exports = function(app) {
       });
   });
 
- // Route for deleting a note 
- app.delete("/articles/:id", function (req,res) {
-   db.Note.deleteOne({},function(err){
-     if (err) console.log(err);
-   }); 
+  // Route for deleting a note associated to an article
+  app.delete("/articles/:id", function(req, res) {
+    var articleId = req.params.id;
+    db.Article.findOne({ _id: articleId })
+      .then(function(dbArticle) {
+        console.log(dbArticle);
+
+        //Delete the note
+        db.Note.deleteOne({ _id: dbArticle.note }, function(err) {
+          if (err) {
+            res.json(err);
+          }
+        });
+      })
+      .then(function(dbArticle){
+        //Update current Article to remove note ref value
+        db.Article.findOneAndUpdate({ _id: articleId },{ $pull: { note:dbArticle.note }},{new:true})
+      })
+      .catch(function(err){
+        res.json(err);
+      });
+    
+    res.json(articleId);
   });
-
- 
-
 };

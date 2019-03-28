@@ -83,7 +83,7 @@ $(document).on("click", "#deletenote", function() {
     method: "DELETE",
     url: "/articles/" + thisId
   })
-   // With that done
+   // When done
    .then(function(res) {
     // Log the response
     console.log(res);
