@@ -1,4 +1,19 @@
-// Grab the articles as a json
+<h1>News Scraping with MongoDB, Mongoose, Express Handlebars</h1>
+
+<div id="wrapper">
+   
+      <h1>NY Times Headlines - Technology</h1>
+     
+     <h3>Articles</h3>
+      <div id="articles"></div>
+
+      <h3>Notes</h3>
+      <div id="notes"></div>
+
+</div>
+
+<script>
+      // Grab the articles as a json
 $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
@@ -90,6 +105,6 @@ $(document).on("click", "#deletenote", function() {
     $("#notes").empty();
   });
   }); 
-
+</script>
 
 

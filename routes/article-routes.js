@@ -6,6 +6,12 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 module.exports = function(app) {
+
+  //Home route
+  app.get("/", function(req,res){
+    res.render('index');
+  });
+
   // A GET route for scraping the website
   app.get("/scrape", function(req, res) {
     // Get the body of the html with axios
