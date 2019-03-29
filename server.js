@@ -34,5 +34,5 @@ require("./routes/html-routes.js")(app);
 
 // Start the server
 app.listen(PORT, function() {
-  console.log("App running on port " + PORT + "!");
+  console.log("App running ...");
 });
