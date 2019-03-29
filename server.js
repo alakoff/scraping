@@ -10,6 +10,8 @@ var db = require("./models");
 // Initialize Express
 var app = express();
 
+var PORT = process.env.PORT || 3000;
+
 // Configure Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -33,6 +35,6 @@ require("./routes/article-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
 // Start the server
-app.listen(MONGODB_URI, function() {
-  console.log("App running ...");
+app.listen(PORT, function() {
+  console.log("App running on port " + PORT);
 });
