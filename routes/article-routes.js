@@ -12,7 +12,7 @@ module.exports = function(app) {
     res.render('index');
   });
 
-  // A GET route for scraping the website
+  // A GET route for scraping the news website
   app.get("/scrape", function(req, res) {
     // Get the body of the html with axios
     axios
@@ -54,7 +54,7 @@ module.exports = function(app) {
         });
 
         // Send a message to the client
-        console.log("Articles refreshed!");
+        res.send("Articles refreshed!");
       });
   });
 

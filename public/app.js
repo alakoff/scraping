@@ -4,30 +4,29 @@ $.getJSON("/articles", function(data) {
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
   
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + '<strong>Title: </strong>' + data[i].title + '<br /><br />' + '<strong>Summary: </strong>' + data[i].summary + '<br />' + '<strong>Link: </strong>'+ '<a href='+data[i].link+'>'+data[i].link+'</a>' + '<br/>' + '<strong>Author:</strong>' + data[i].author + '</p><hr>');
-   }
+    $("#articles").append("<p data-id='" + data[i]._id + "'>" + '<strong>Title: </strong>' + data[i].title + '<br /><br />' + '<strong>Summary: </strong>' + data[i].summary + '<br />' + '<strong>Link: </strong>'+ '<a href='+data[i].link +' target="_blank">'+data[i].link+'</a>' + '<br/>' + '<strong>Author:</strong>' + data[i].author + '</p><hr>');
+  }
 });
 
 
-// //Click on the "Get Articles" button
-// $(document).on("click", "#btnGetArticles", function(){
-//   // Now make an ajax call to scrape the articles
-//   $.ajax({
-//     method: "GET",
-//     url: "/scrape"
-//     })
-//     .then(function(err,res){
-//       if (err) console.log(err);
-//       console.log(res);
-//       location.reload();
-//       res.end();
+//Click on the "Get Articles" button
+$(document).on("click", "#btnGetArticles", function(){
+  // Now make an ajax call to scrape the articles
+  $.ajax({
+    method: "GET",
+    url: "/scrape"
+    })
+    .then(function(err,res){
+      if (err) console.log(err);
+      console.log(res);
+      location.reload();
       
-//     }); 
-// });
+    }); 
+});
 
 
 // Whenever someone clicks a p tag
-$(document).on("click", "#p", function() {
+$(document).on("click", "p", function() {
   console.log('p tag clicked');
   // Empty the notes from the note section
   $("#notes").empty();
