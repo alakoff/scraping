@@ -3,13 +3,32 @@ $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + '<br /><br />' + data[i].summary + '<br />' + data[i].link + '<br />' + data[i].author + '<br />' +"</p>");
+  
+    $("#articles").append("<p data-id='" + data[i]._id + "'>" + '<strong>Title: </strong>' + data[i].title + '<br /><br />' + '<strong>Summary: </strong>' + data[i].summary + '<br />' + '<strong>Link: </strong>'+ '<a href='+data[i].link+'>'+data[i].link+'</a>' + '<br/>' + '<strong>Author:</strong>' + data[i].author + '</p><hr>');
    }
 });
 
 
+// //Click on the "Get Articles" button
+// $(document).on("click", "#btnGetArticles", function(){
+//   // Now make an ajax call to scrape the articles
+//   $.ajax({
+//     method: "GET",
+//     url: "/scrape"
+//     })
+//     .then(function(err,res){
+//       if (err) console.log(err);
+//       console.log(res);
+//       location.reload();
+//       res.end();
+      
+//     }); 
+// });
+
+
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", "#p", function() {
+  console.log('p tag clicked');
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
@@ -24,7 +43,7 @@ $(document).on("click", "p", function() {
     .then(function(data) {
       console.log(data);
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#notes").append("<h3>" + data.title + "</h3>");
       // An input to enter a new title
       $("#notes").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body
@@ -43,6 +62,7 @@ $(document).on("click", "p", function() {
       }
     });
   });
+
 
 // When you click the save note button
 $(document).on("click", "#savenote", function() {

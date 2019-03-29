@@ -54,7 +54,7 @@ module.exports = function(app) {
         });
 
         // Send a message to the client
-        res.send("Scraping Complete !");
+        console.log("Articles refreshed!");
       });
   });
 
