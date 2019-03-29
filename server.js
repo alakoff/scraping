@@ -33,6 +33,6 @@ require("./routes/article-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
 // Start the server
-app.listen(PORT, function() {
+app.listen(MONGODB_URI, function() {
   console.log("App running ...");
 });
